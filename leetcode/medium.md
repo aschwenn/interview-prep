@@ -82,4 +82,54 @@ At most, each character can be visited once by each `left` and `right` for a com
 In the worst case, the entire string has unique characters and our set contains the whole string.
 
 ---
+
+# Longest Palindromic Substring
+### Problem
+Given a string `s`, return the longest palindromic substring in `s`.
+### Example
+```
+Input: "cbbd"
+Output: "bb"
+```
+### Solution
+**Data structure**: none
+##### Description
+The brute force solution involves nested for loops, which gives a time complexity of O(n^3). This can be reduced by checking each character in `s` and understanding that if `s[i-1] === s[i+1]`, then `s[i-1:i+1]` is also a palindrome. We can expand outwards at each step, performing these checks until we reach a case where `s[i-1] !== s[i+1]`, at which point we can compare the length to the running max.
+##### Code
+```node
+var longestPalindrome = function(s) {
+    // store indices for longest substr
+    let start = 0
+    let end = 0
+    
+    const expandAroundCenter = (left, right) => {
+        while (left >= 0 && right < s.length && s[left] === s[right]) {
+            left -= 1
+            right += 1
+        }
+        return right - left - 1
+    }
+    
+    for (let i = 0; i < s.length; i += 1) {
+        // two cases: racecar (start at e) and aabbaa (start at bb)
+        const l1 = expandAroundCenter(i, i)
+        const l2 = expandAroundCenter(i, i + 1)
+        const len = Math.max(l1, l2)
+        if (len > (end - start)) {
+            start = i - Math.floor((len - 1) / 2)
+            end = i + Math.floor(len / 2)
+        }
+    }
+    
+    return s.slice(start, end + 1)
+}
+```
+##### Time complexity: O(n^2)
+Iterating through is O(n), and expanding outwards at each iteration is O(n).
+
+##### Space complexity: O(1)
+Only strings are used to store data.
+
+---
+
 `cmd-shift-v` to preview
