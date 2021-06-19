@@ -164,6 +164,54 @@ var maxArea = function(height) {
 ##### Time complexity: O(n)
 Only a single pass through the array
 ##### Space complexity: O(1)
+
+---
+
+# Integer to Roman
+### Problem
+Convert an integer to Roman numerals.
+### Example
+```
+Input: num = 1994
+Output: "MCMXCIV"
+Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
+```
+### Solution
+**Data structure**: 2D array
+##### Description
+We can check each digit starting with the least significant, and convert it to its corresponding Roman numeral(s). We can also use a 2D array to keep track of which Roman numerals are used for each power of 10.
+##### Code
+```node
+var intToRoman = function(num) {
+    let sum = []
+    let i = 0
+    const numerals = [['I', 'V'], ['X', 'L'], ['C', 'D'], ['M', '']]
+    while (num > 0) {
+        const digit = num % 10
+        
+        if (digit > 0 && digit < 4)
+            sum.push(numerals[i][0].repeat(digit))
+        else if (digit === 4)
+            sum.push(`${numerals[i][0]}${numerals[i][1]}`)
+        else if (digit === 5)
+            sum.push(numerals[i][1])
+        else if (digit > 5 && digit < 9)
+            sum.push(`${numerals[i][1]}${numerals[i][0].repeat(digit - 5)}`)
+        else if (digit === 9)
+            sum.push(`${numerals[i][0]}${numerals[i + 1][0]}`)
+    
+        console.log(sum)
+        
+        num = Math.trunc(num / 10)
+        i += 1
+    }
+    return sum.reverse().join('')
+}
+```
+##### Time complexity: O(logn)
+We only check each digit, which results in logn iterations.
+##### Space complexity: O(1)
+
 ---
 
 `cmd-shift-v` to preview

@@ -84,7 +84,48 @@ The array must hold each digit.
 
 ---
 
+# Roman to Integer
+### Problem
+Given a roman numeral, convert it to an integer.
+### Example
+```
+Input: s = "MCMXCIV"
+Output: 1994
+Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
+```
+### Solution
+**Data structure**: hashmap
+##### Description
+We can use a hashmap to convert the Roman numerals to integers with an O(1) lookup time. Then, we can iterate through each numeral, checking ahead in case of a 4, 9, 40, etc.
+##### Code
+```node
+var romanToInt = function(s) {
+    const dict = {
+        I: 1,
+        V: 5,
+        X: 10,
+        L: 50,
+        C: 100,
+        D: 500,
+        M: 1000
+    }
+    let sum = 0
+    for (let i = 0; i < s.length; i += 1) {
+        if (i < s.length - 1 && /(I[VX])|(X[LC])|(C[DM])/.test(s.slice(i, i + 2))) {
+            sum += dict[s[i + 1]] - dict[s[i]]
+            i += 1
+        } else {
+            sum += dict[s[i]]
+        }
+    }
+    return sum
+}
+```
+##### Time complexity: O(n)
+We iterate through the string one time.
+##### Space complexity: O(1)
 
+---
 
 ---
 `cmd-shift-v` to preview
