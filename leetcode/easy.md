@@ -45,6 +45,45 @@ Dividing by 10 each time results in a logarithmic time complexity.
 
 ---
 
+# Palindrome Number
+### Problem
+Given an integer x, return true if x is palindrome integer. Avoid converting the integer into a string for the solution.
+### Example
+```
+Input: x = 121
+Output: true
+
+Input: x = -121
+Output: false
+```
+### Solution
+**Data structure**: array
+##### Description
+Use a while loop to break the integer into its digits and store it in an array. Then, compare the latter half of the array to the former half.
+##### Code
+```node
+var isPalindrome = function(x) {
+    if (x < 0) return false
+    const arr = []
+    // O(logn)
+    while (x > 0) {
+        arr.push(x % 10)
+        x = Math.trunc(x / 10)
+    }
+    // O(1/2 log(n))
+    for (let i = 0; i <= arr.length / 2; i += 1) {
+        if (arr[i] !== arr[arr.length - 1 - i]) return false
+    }
+    return true
+}
+```
+##### Time complexity: O(logn)
+The while loop takes O(logn), and the for loop afterwards takes O(1/2 logn).
+##### Space complexity: O(logn)
+The array must hold each digit.
+
+---
+
 
 
 ---

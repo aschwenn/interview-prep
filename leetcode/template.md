@@ -9,7 +9,7 @@
 ##### Description
 
 ##### Code
-```
+```node
 
 ```
 ##### Time complexity: 
