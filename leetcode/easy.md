@@ -158,5 +158,39 @@ We iterate through the string one time.
 
 ---
 
+# Valid Palindrome
+### Problem
+Given a string `s`, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+### Example
+```
+Input: s = "A man, a plan, a canal: Panama"
+Output: true
+Explanation: "amanaplanacanalpanama" is a palindrome.
+```
+### Solution
+**Data structure**: two pointers
+##### Description
+We can use two pointers at either end of the string to check at each index that the string is symmetrical/palindromic.
+##### Code
+```node
+var isPalindrome = function(s) {
+    s = s.toLowerCase().replace(/[^a-z0-9]/g, '')
+    let left = 0
+    let right = s.length - 1
+    while (left < right) {
+        if (s[left] !== s[right]) return false
+        left += 1
+        right -= 1
+    }
+    return true
+}
+```
+##### Time complexity: O(n)
+The cleanup/regex call is O(n), and the while loop is O(1/2 n).
+##### Space complexity: O(1)
+The original string is modified, so no extra memory is used beyond the pointers.
+
+---
+
 ---
 `cmd-shift-v` to preview
