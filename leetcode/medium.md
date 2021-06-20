@@ -13,7 +13,7 @@ because 342 + 465 = 807
 ##### Description
 Iterate over both linked lists simultaneously to compute the sum step by step. Maintain a `carry` value, and keep track of current `l1` and `l2` nodes as well as the current sum node.
 ##### Code
-```
+```node
 var addTwoNumbers = function(l1, l2) {
     const head = new ListNode(0)
     let carry = 0
@@ -57,7 +57,7 @@ Explanation: The answer is "abc", with the length of 3.
 ##### Description
 We can use the *sliding window* technique to find the longest substring in a single for loop. We initialize a set of previously seen characters and a `left` and `right` window boundary. We iterate through, and when the right boundary encounters a character in the set, we move the left boundary and remove characters from the set until we have all unique characters again, keeping track of the longest substring as we go.
 ##### Code
-```
+```node
 var lengthOfLongestSubstring = function(s) {
     let longest = 0
     let chars = new Set() // ensure no duplicate chars
@@ -211,6 +211,61 @@ var intToRoman = function(num) {
 ##### Time complexity: O(logn)
 We only check each digit, which results in logn iterations.
 ##### Space complexity: O(1)
+
+---
+
+# Three Sum (3Sum)
+### Problem
+Given an integer array `nums`, return all the triplets `[nums[i], nums[j], nums[k]]` such that `i != j`, `i != k`, and `j != k`, and `nums[i] + nums[j] + nums[k] == 0`.
+
+Notice that the solution set must not contain duplicate triplets.
+### Example
+```
+Input: nums = [-1,0,1,2,-1,-4]
+Output: [[-1,-1,2],[-1,0,1]]
+```
+### Solution
+**Data structure**: 2 pointers
+##### Description
+Three sum can be thought of as essentially two sum with one number held constant. We can use an outer loop to iterate through all numbers to hold one constant, and perform the two sum algorithm on the remaining. We should also sort the array initially to be able to avoid duplicates when identifying triplet sets. Since the array will be sorted, we can use the two-pointer method from Two Sum II.
+##### Code
+```node
+var threeSum = function(nums) {
+    const result = []
+    
+    const twoSum = (i) => {
+        let left = i + 1
+        let right = nums.length - 1
+        
+        while (left < right) {
+            const sum = nums[left] + nums[right] + nums[i]
+            if (sum === 0) {
+                result.push([nums[i], nums[left], nums[right]])
+                left += 1
+                right -= 1
+                // skip duplicates
+                while (nums[left] === nums[left - 1] && left < right) left += 1
+            }
+            else if (sum < 0) left += 1
+            else right -= 1
+        }
+    }
+    
+    // sort first to be able to apply twosum II logic
+    nums.sort((a, b) => a - b)
+    for (let i = 0; i < nums.length; i += 1) {
+        if (nums[i] > 0) break
+        // skip duplicates
+        if (nums[i] === nums[i - 1]) continue
+        twoSum(i)
+    }
+    return result
+}
+```
+##### Time complexity: O(n^2)
+We iterate through each value in `nums` for O(n), and call the two sum algorithm each time for O(n), giving O(n^2). Additionally, the sort (implemented in JS as merge sort (Mozilla) or quicksort (other)) is O(n^2).
+##### Space complexity: O(1)
+There are no growing data structures, and the sort is performed in-place.
 
 ---
 

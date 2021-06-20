@@ -5,10 +5,41 @@ Given an array of ints `nums` and an int `target`, return the indices of two val
 **Data structure**: hashmap
 ##### Description
 Iterate over `nums` to create a hashmap of shape `Map<num, index>` for O(1) lookup. While iterating, check if the complement of the current number (`target - num`) exists in the hashmap; if so, return its value in the hashmap (its index) and the current index.
+##### Code
+```node
+var twoSum = function(nums, target) {
+    // constructing lookup table of (num, index)
+    const dict = {}
+    for (let i = 0; i < nums.length; i += 1) {
+        const complement = target - nums[i]
+        if (complement in dict) return [dict[complement], i]
+        else dict[nums[i]] = i
+    }
+}
+```
 ##### Time complexity: O(n)
 One pass through the array is O(n). Hashmap lookups are O(1).
 ##### Space complexity: O(n)
 There are at most `n` keys stored in the hashmap
+
+### Part two: array is sorted in ascending order
+
+We can instead optimize for this scenario by maintaining two pointers at each end of the array. We can sum the values at each pointer to see if they match the target, and move the left if our sum is too low or the right if our sum is too high.
+
+##### Code
+
+```node
+var twoSum = function(numbers, target) {
+    let left = 0
+    let right = numbers.length - 1
+    while (left < right) {
+        const sum = numbers[left] + numbers[right]
+        if (sum === target) return [left + 1, right + 1]
+        else if (sum > target) right -= 1
+        else left += 1
+    }
+}
+```
 
 ---
 
