@@ -328,4 +328,47 @@ We make one initial pass through the linked list (O(n)), then a pass through the
 
 ---
 
+# The kth Factor of n
+### Problem
+Given two positive integers n and k.
+
+A factor of an integer n is defined as an integer i where n % i == 0.
+
+Consider a list of all factors of n sorted in ascending order, return the kth factor in this list or return -1 if n has less than k factors.
+### Example
+```
+Input: n = 12, k = 3
+Output: 3
+Explanation: Factors list is [1, 2, 3, 4, 6, 12], the 3rd factor is 3.
+```
+### Solution
+**Data structure**: array
+##### Description
+We can find all factors of `n` by iterating from 1 to `sqrt(n)`. We can create one array to store all of these initial factors, and a separate array to store their complements. Then we can reverse the complements array, concatenate the two, and find our answer.
+##### Code
+```node
+var kthFactor = function(n, k) {
+    const factors = []
+    const factors2 = []
+    const sqrt = Math.trunc(Math.sqrt(n))
+    for (let i = 1; i <= sqrt; i += 1) {
+        if (n % i === 0) {
+            factors.push(i)
+            // skip duplicate in the case of a square
+            if (n / i !== i) factors2.push(n / i)
+        }
+    }
+    
+    factors2.reverse()
+    factors.push(...factors2)
+    
+    return k > factors.length ? -1 : factors[k - 1]
+}
+```
+##### Time complexity: O(sqrt(n))
+
+##### Space complexity: O(sqrt(n))
+
+---
+
 `cmd-shift-v` to preview
