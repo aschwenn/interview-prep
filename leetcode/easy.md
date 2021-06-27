@@ -192,5 +192,40 @@ The original string is modified, so no extra memory is used beyond the pointers.
 
 ---
 
+# Valid Parenthesis
+### Problem
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+### Example
+```
+Input: s = "()[]{}"
+Output: true
+```
+### Solution
+**Data structure**: stack, hashmap
+##### Description
+Iterate through `s`, pushing each opening bracket onto the stack. If a closing bracket is encountered, pop from the stack and compare the result to the closing bracket for a match. After iterating through `s`, the stack should be empty if the string is valid.
+##### Code
+```node
+var isValid = function(s) {
+    const arr = []
+    const map = { '{': '}', '(': ')', '[': ']' }
+    for (let i = 0; i < s.length; i += 1) {
+        const char = s.charAt(i)
+        if (char in map) arr.push(char)
+        else {
+            const open = arr.pop()
+            if (map[open] !== char) return false
+        }
+    }
+    return !arr.length
+}
+```
+##### Time complexity: O(n)
+We make a single pass through `s`.
+##### Space complexity: O(n)
+We could store up to O(1/2 n) open brackets in the stack.
+
+---
+
 ---
 `cmd-shift-v` to preview
