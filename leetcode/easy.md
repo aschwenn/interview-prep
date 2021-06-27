@@ -227,5 +227,41 @@ We could store up to O(1/2 n) open brackets in the stack.
 
 ---
 
+# Reverse a Linked List
+### Problem
+Given the head of a singly linked list, reverse the list, and return the reversed list.
+### Example
+```
+Input: head = [1,2,3,4,5]
+Output: [5,4,3,2,1]
+```
+### Solution
+**Data structure**: none (in-place)
+##### Description
+Iterate through the linked list, pointing `next` to the previous node and storing the current and previous nodes.
+##### Code
+```node
+var reverseList = function(head) {
+    if (!head) return head
+    
+    let prev = null
+    let curr = head
+    
+    while (curr) {
+        const next = curr.next
+        curr.next = prev
+        prev = curr
+        curr = next
+    }
+    
+    return prev
+    
+}
+```
+##### Time complexity: O(n)
+##### Space complexity: O(1)
+
+---
+
 ---
 `cmd-shift-v` to preview
