@@ -263,5 +263,33 @@ var reverseList = function(head) {
 
 ---
 
+# Invert Binary Tree
+### Problem
+Given the root of a binary tree, invert the tree, and return its root.
+### Example
+```
+Input: root = [4,2,7,1,3,6,9]
+Output: [4,7,2,9,6,3,1]
+```
+### Solution
+**Data structure**: none (in-place)
+##### Description
+Use a recursive approach to switch the two children each time.
+##### Code
+```node
+var invertTree = function(root) {
+    if (!root) return null
+    const tmp = root.left
+    root.left = invertTree(root.right)
+    root.right = invertTree(tmp)
+    return root
+}
+```
+##### Time complexity: O(n)
+We have to at least visit each node to invert it.
+##### Space complexity: O(1)
+
+---
+
 ---
 `cmd-shift-v` to preview
