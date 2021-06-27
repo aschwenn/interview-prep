@@ -269,4 +269,63 @@ There are no growing data structures, and the sort is performed in-place.
 
 ---
 
+# Reorder List
+### Problem
+You are given the head of a singly linked-list. The list can be represented as:
+`L0 → L1 → … → Ln - 1 → Ln`
+Reorder the list to be on the following form:
+`L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …`
+You may not modify the values in the list's nodes. Only nodes themselves may be changed.
+### Example
+```
+Input: head = [1,2,3,4]
+Output: [1,4,2,3]
+```
+### Solution
+**Data structure**: none (in-place)
+##### Description
+We can break this down into 3 necessary steps:
+1. Split the full list into first-half and second-half lists
+    For this we can use two pointers as we traverse the list, one "slow" pointer and one "fast" pointer incrementing at double the rate.
+2. Reverse the second-half list
+3. Merge the two lists
+    We point the current node of the first list to the current node of the second list, then the current node of the second list to the next node of the first list.
+##### Code
+```node
+var reorderList = function(head) {
+    // split into two lists, create pointers for second list
+    let start = head
+    let end = head
+    while (end && end.next) {
+        start = start.next
+        end = end.next.next
+    }
+    // reverse second list
+    let prev = null
+    let curr = start
+    while (curr) {
+        const next = curr.next
+        curr.next = prev
+        prev = curr
+        curr = next
+    }
+    // merge two lists
+    let first = head
+    let second = prev
+    while (second.next) {
+        let tmp = first.next
+        first.next = second
+        first = tmp
+        tmp = second.next
+        second.next = first
+        second = tmp
+    }
+}
+```
+##### Time complexity: O(n)
+We make one initial pass through the linked list (O(n)), then a pass through the latter half to reverse it (O(1/2 n)), then a pass through both halves simultaneously (O(1/2 n)) for a total of O(2n).
+##### Space complexity: O(1)
+
+---
+
 `cmd-shift-v` to preview
