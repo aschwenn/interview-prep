@@ -377,4 +377,44 @@ var climbStairs = function(n) {
 ##### Space complexity: O(1)
 
 ---
+# Merge Two Sorted Lists
+### Problem
+Merge two sorted linked lists and return it as a sorted list. The list should be made by splicing together the nodes of the first two lists.
+### Example
+```
+Input: l1 = [1,2,4], l2 = [1,3,4]
+Output: [1,1,2,3,4,4]
+```
+### Solution
+**Data structure**: linked list
+##### Description
+Check through both lists simultaneously, adding the lesser node to the new linked list each time.
+##### Code
+```node
+var mergeTwoLists = function(l1, l2) {
+    const prehead = new ListNode()
+    let current = prehead
+    while (l1 && l2) {
+        if (l1.val <= l2.val) {
+            current.next = l1
+            l1 = l1.next
+        }
+        else {
+            current.next = l2
+            l2 = l2.next
+        }
+        current = current.next
+    }
+    current.next = l1 ? l1 : l2
+    return prehead.next
+}
+```
+##### Time complexity: O(n)
+
+##### Space complexity: O(n)
+In JavaScript this is O(n), but in languages with pointers it would be constant time.
+
+---
+
+---
 `cmd-shift-v` to preview
