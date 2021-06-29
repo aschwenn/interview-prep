@@ -429,5 +429,65 @@ var numIslands = function(grid) {
 
 
 ---
+# Max Area of Island
+### Problem
+You are given an `m x n` binary matrix `grid`. An island is a group of `1`'s (representing land) connected 4-directionally (horizontal or vertical.) You may assume all four edges of the grid are surrounded by water.
+
+The area of an island is the number of cells with a value `1` in the island.
+
+Return the maximum area of an island in grid. If there is no island, return `0`.
+### Example
+```
+Input: grid = [[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]]
+Output: 6
+Explanation: The answer is not 11, because the island must be connected 4-directionally.
+```
+### Solution
+**Data structure**: 
+##### Description
+The previous number of islands algorithm can be slightly modified to utilize two static counters for overall max size and temporary size.
+##### Code
+```node
+var maxAreaOfIsland = function(grid) {
+    let max_size = 0
+    let max_tmp = 0
+    
+    const dfs = (row, col) => {
+        if (
+            row < 0 ||
+            col < 0 ||
+            row >= grid.length ||
+            col >= grid[0].length ||
+            grid[row][col] === 0
+        ) return
+
+        grid[row][col] = 0
+        max_tmp += 1
+        
+        dfs(row - 1, col)
+        dfs(row + 1, col)
+        dfs(row, col - 1)
+        dfs(row, col + 1)
+    }
+    for (let row = 0; row < grid.length; row += 1) {
+        for (let col = 0; col < grid[0].length; col += 1) {
+            if (grid[row][col] === 1) {
+                dfs(row, col)
+                
+                if (max_tmp > max_size) max_size = max_tmp
+                max_tmp = 0
+            }
+        }
+    }
+
+    return max_size
+}
+```
+##### Time complexity: O(n x m)
+
+##### Space complexity: O(1)
+
+
+---
 
 `cmd-shift-v` to preview
