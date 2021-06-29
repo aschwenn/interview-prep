@@ -371,4 +371,63 @@ var kthFactor = function(n, k) {
 
 ---
 
+# Number of Islands
+### Problem
+Given an `m` x `n` 2D binary grid grid which represents a map of `'1'`s (land) and `'0'`s (water), return the number of islands.
+
+An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+
+### Example
+```
+Input: grid = [
+  ["1","1","0","0","0"],
+  ["1","1","0","0","0"],
+  ["0","0","1","0","0"],
+  ["0","0","0","1","1"]
+]
+Output: 3
+```
+### Solution
+**Data structure**: none
+##### Description
+Iterate through the 2D array. At each `"1"` encounter, increment the island counter and run depth-first search to mark the whole island as seen (`"0"`).
+##### Code
+```node
+var numIslands = function(grid) {
+    const dfs = (row, col) => {
+        if (
+            row < 0 ||
+            col < 0 ||
+            row >= grid.length ||
+            col >= grid[0].length ||
+            grid[row][col] === '0'
+        ) return
+        
+        grid[row][col] = '0'
+        dfs(row - 1, col)
+        dfs(row + 1, col)
+        dfs(row, col - 1)
+        dfs(row, col + 1)
+    }
+    
+    let islands = 0
+    for (let row = 0; row < grid.length; row += 1) {
+        for (let col = 0; col < grid[0].length; col += 1) {
+            if (grid[row][col] === '1') {
+                islands += 1
+                dfs(row, col)
+            }
+        }
+    }
+    
+    return islands
+}
+```
+##### Time complexity: O(n x m)
+
+##### Space complexity: O(1)
+
+
+---
+
 `cmd-shift-v` to preview
