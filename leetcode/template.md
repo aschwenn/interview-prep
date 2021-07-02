@@ -3,6 +3,7 @@
 
 ### Example
 ```
+
 ```
 ### Solution
 **Data structure**: 
