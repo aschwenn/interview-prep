@@ -490,4 +490,46 @@ var maxAreaOfIsland = function(grid) {
 
 ---
 
+# Linked List Cycle II
+### Problem
+Given a linked list, return the node where the cycle begins. If there is no cycle, return `null`.
+### Example
+```
+Input: head = [3,2,0,-4], pos = 1
+Output: tail connects to node index 1
+Explanation: There is a cycle in the linked list, where tail connects to the second node.
+```
+### Solution
+**Data structure**: none
+##### Description
+We split the solution into two steps: 1) find the initial intersect between a fast and slow pointer and 2) find the connection point. For some mathematical reason this works out.
+
+> Alternatively, use Python and create a hashmap of pointers. When a pointer is reached that is already in the map, this is the connection point.
+##### Code
+```node
+var detectCycle = function(head) {
+    if (!head || !head.next) return null
+    let slow = head
+    let fast = head
+    while (fast && fast.next) {
+        slow = slow.next
+        fast = fast.next.next
+        if (slow === fast) {
+            slow = head
+            while (slow !== fast) {
+                slow = slow.next
+                fast = fast.next
+            }
+            return fast
+        }
+    }
+    return null
+}
+```
+##### Time complexity: O(n)
+Not even going to bother trying to write the proof for this one tbh.
+##### Space complexity: O(1)
+
+---
+
 `cmd-shift-v` to preview
