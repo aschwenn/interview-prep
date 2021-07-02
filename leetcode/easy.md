@@ -6,7 +6,7 @@ Given an array of ints `nums` and an int `target`, return the indices of two val
 ##### Description
 Iterate over `nums` to create a hashmap of shape `Map<num, index>` for O(1) lookup. While iterating, check if the complement of the current number (`target - num`) exists in the hashmap; if so, return its value in the hashmap (its index) and the current index.
 ##### Code
-```node
+```javascript
 var twoSum = function(nums, target) {
     // constructing lookup table of (num, index)
     const dict = {}
@@ -28,7 +28,7 @@ We can instead optimize for this scenario by maintaining two pointers at each en
 
 ##### Code
 
-```node
+```javascript
 var twoSum = function(numbers, target) {
     let left = 0
     let right = numbers.length - 1
@@ -56,7 +56,7 @@ Output: 321
 ##### Description
 Digits can be popped off in a while loop using modulus and division. A check will need to be performed each time to ensure the newly created value won't overflow.
 ##### Code
-```node
+```javascript
 var reverse = function(x) {
     let result = 0
     const intLimit = Math.pow(2, 31)
@@ -92,7 +92,7 @@ Output: false
 ##### Description
 Use a while loop to break the integer into its digits and store it in an array. Then, compare the latter half of the array to the former half.
 ##### Code
-```node
+```javascript
 var isPalindrome = function(x) {
     if (x < 0) return false
     const arr = []
@@ -129,7 +129,7 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 ##### Description
 We can use a hashmap to convert the Roman numerals to integers with an O(1) lookup time. Then, we can iterate through each numeral, checking ahead in case of a 4, 9, 40, etc.
 ##### Code
-```node
+```javascript
 var romanToInt = function(s) {
     const dict = {
         I: 1,
@@ -172,7 +172,7 @@ Explanation: "amanaplanacanalpanama" is a palindrome.
 ##### Description
 We can use two pointers at either end of the string to check at each index that the string is symmetrical/palindromic.
 ##### Code
-```node
+```javascript
 var isPalindrome = function(s) {
     s = s.toLowerCase().replace(/[^a-z0-9]/g, '')
     let left = 0
@@ -205,7 +205,7 @@ Output: true
 ##### Description
 Iterate through `s`, pushing each opening bracket onto the stack. If a closing bracket is encountered, pop from the stack and compare the result to the closing bracket for a match. After iterating through `s`, the stack should be empty if the string is valid.
 ##### Code
-```node
+```javascript
 var isValid = function(s) {
     const arr = []
     const map = { '{': '}', '(': ')', '[': ']' }
@@ -238,9 +238,9 @@ Output: [5,4,3,2,1]
 ### Solution
 **Data structure**: none (in-place)
 ##### Description
-Iterate through the linked list, pointing `next` to the previous node and storing the current and previous nodes.
+Iterate through the linked list, pointing `next` to the previous javascript and storing the current and previous javascripts.
 ##### Code
-```node
+```javascript
 var reverseList = function(head) {
     if (!head) return head
     
@@ -276,7 +276,7 @@ Output: [4,7,2,9,6,3,1]
 ##### Description
 Use a recursive approach to switch the two children each time.
 ##### Code
-```node
+```javascript
 var invertTree = function(root) {
     if (!root) return null
     const tmp = root.left
@@ -286,7 +286,7 @@ var invertTree = function(root) {
 }
 ```
 ##### Time complexity: O(n)
-We have to at least visit each node to invert it.
+We have to at least visit each javascript to invert it.
 ##### Space complexity: O(1)
 
 ---
@@ -311,7 +311,7 @@ Explanation: There are three ways to climb to the top.
 We can write a recursive top-down solution that simulates climbing up the stairs. At each step, we can either go up one or two stairs until we reach the top. We can run a function `climb` with a step `i`, where the result is `climb(i + 1) + climb(i + 2)`. Rather than recompute these each time, we can memoize.
 
 ##### Code
-```node
+```javascript
 var climbStairs = function(n) {
     const memo = new Array(n)
     
@@ -335,7 +335,7 @@ var climbStairs = function(n) {
 We can write an iterative bottom-up solution that simulates climbing up the stairs in a similar way, by understanding that `dp[i] = dp[i - 1] + dp[i - 2]`.
 
 ##### Code
-```node
+```javascript
 var climbStairs = function(n) {
     const dp = new Array(n + 1)
     dp[1] = 1
@@ -357,7 +357,7 @@ var climbStairs = function(n) {
 We can optimize further to avoid saving each result, cutting spatial complexity down to constant time.
 
 ##### Code
-```node
+```javascript
 var climbStairs = function(n) {
     if (n === 1) return 1
     
@@ -379,7 +379,7 @@ var climbStairs = function(n) {
 ---
 # Merge Two Sorted Lists
 ### Problem
-Merge two sorted linked lists and return it as a sorted list. The list should be made by splicing together the nodes of the first two lists.
+Merge two sorted linked lists and return it as a sorted list. The list should be made by splicing together the javascripts of the first two lists.
 ### Example
 ```
 Input: l1 = [1,2,4], l2 = [1,3,4]
@@ -388,11 +388,11 @@ Output: [1,1,2,3,4,4]
 ### Solution
 **Data structure**: linked list
 ##### Description
-Check through both lists simultaneously, adding the lesser node to the new linked list each time.
+Check through both lists simultaneously, adding the lesser javascript to the new linked list each time.
 ##### Code
-```node
+```javascript
 var mergeTwoLists = function(l1, l2) {
-    const prehead = new ListNode()
+    const prehead = new Listjavascript()
     let current = prehead
     while (l1 && l2) {
         if (l1.val <= l2.val) {
@@ -420,21 +420,21 @@ In JavaScript this is O(n), but in languages with pointers it would be constant 
 ### Problem
 Given `head`, the head of a linked list, determine if the linked list has a cycle in it.
 
-There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the `next` pointer. Internally, `pos` is used to denote the index of the node that tail's `next` pointer is connected to. Note that `pos` is not passed as a parameter.
+There is a cycle in a linked list if there is some javascript in the list that can be reached again by continuously following the `next` pointer. Internally, `pos` is used to denote the index of the javascript that tail's `next` pointer is connected to. Note that `pos` is not passed as a parameter.
 
 Return `true` if there is a cycle in the linked list. Otherwise, return `false`.
 ### Example
 ```
 Input: head = [3,2,0,-4], pos = 1
 Output: true
-Explanation: There is a cycle in the linked list, where the tail connects to the 1st node (0-indexed).
+Explanation: There is a cycle in the linked list, where the tail connects to the 1st javascript (0-indexed).
 ```
 ### Solution
 **Data structure**: none
 ##### Description
 We can keep two pointers, one fast and one slow. The fast will increment by two steps each time, and the slow will increment by one. If they meet, we have a loop. If the fast pointer reaches the end of the linked list, there is no loop.
 ##### Code
-```node
+```javascript
 var hasCycle = function(head) {
     if (!head || !head.next) return false
     let slow = head

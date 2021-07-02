@@ -21,7 +21,7 @@ Dynamic programming can optimize recursive problems by storing the results of su
 ##### Example
 
 Recursive solution: O(2^n)
-```node
+```javascript
 const fib = (n) => {
   let result
   if (n === 1 || n === 2) result = 1
@@ -31,7 +31,7 @@ const fib = (n) => {
 ```
 
 Memoized solution: O(n)
-```node
+```javascript
 const memo = {}
 
 const fib = (n) => {
@@ -45,7 +45,7 @@ const fib = (n) => {
 ```
 
 Bottom-up approach: O(n)
-```node
+```javascript
 const fib (n) => {
   if (n === 1 || n === 2) return 1
   const dp = new Array(n + 1)

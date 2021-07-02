@@ -1,6 +1,6 @@
 # Add Two Numbers
 ### Problem
-Given two non-empty linked lists representing two non-negative integers, with each digit stored in a node in *reverse order*, compute the sum of the two numbers as a linked list in reverse order.
+Given two non-empty linked lists representing two non-negative integers, with each digit stored in a javascript in *reverse order*, compute the sum of the two numbers as a linked list in reverse order.
 ### Example
 ```
 l1 = [2, 4, 3]
@@ -11,26 +11,26 @@ because 342 + 465 = 807
 ### Solution
 **Data structure**: linked list
 ##### Description
-Iterate over both linked lists simultaneously to compute the sum step by step. Maintain a `carry` value, and keep track of current `l1` and `l2` nodes as well as the current sum node.
+Iterate over both linked lists simultaneously to compute the sum step by step. Maintain a `carry` value, and keep track of current `l1` and `l2` javascripts as well as the current sum javascript.
 ##### Code
-```node
+```javascript
 var addTwoNumbers = function(l1, l2) {
-    const head = new ListNode(0)
+    const head = new Listjavascript(0)
     let carry = 0
     
-    let node1 = l1
-    let node2 = l2
+    let javascript1 = l1
+    let javascript2 = l2
     
     let curr = head
     
-    while (node1 || node2 || carry !== 0) {
-        const tmpSum = (node1 ? node1.val : 0) + (node2 ? node2.val : 0) + carry
+    while (javascript1 || javascript2 || carry !== 0) {
+        const tmpSum = (javascript1 ? javascript1.val : 0) + (javascript2 ? javascript2.val : 0) + carry
         const sum = tmpSum % 10
-        curr.next = new ListNode(sum)
+        curr.next = new Listjavascript(sum)
         carry = tmpSum >= 10 ? 1 : 0
         curr = curr.next
-        node1 = node1 ? node1.next : undefined
-        node2 = node2 ? node2.next : undefined
+        javascript1 = javascript1 ? javascript1.next : undefined
+        javascript2 = javascript2 ? javascript2.next : undefined
     }
     
     return head.next
@@ -57,7 +57,7 @@ Explanation: The answer is "abc", with the length of 3.
 ##### Description
 We can use the *sliding window* technique to find the longest substring in a single for loop. We initialize a set of previously seen characters and a `left` and `right` window boundary. We iterate through, and when the right boundary encounters a character in the set, we move the left boundary and remove characters from the set until we have all unique characters again, keeping track of the longest substring as we go.
 ##### Code
-```node
+```javascript
 var lengthOfLongestSubstring = function(s) {
     let longest = 0
     let chars = new Set() // ensure no duplicate chars
@@ -96,7 +96,7 @@ Output: "bb"
 ##### Description
 The brute force solution involves nested for loops, which gives a time complexity of O(n^3). This can be reduced by checking each character in `s` and understanding that if `s[i-1] === s[i+1]`, then `s[i-1:i+1]` is also a palindrome. We can expand outwards at each step, performing these checks until we reach a case where `s[i-1] !== s[i+1]`, at which point we can compare the length to the running max.
 ##### Code
-```node
+```javascript
 var longestPalindrome = function(s) {
     // store indices for longest substr
     let start = 0
@@ -146,7 +146,7 @@ Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,
 ##### Description
 The brute force solution would be to use nested for loops to check every possible volume, which would result in an O(n^2) time complexity. However, we can instead use two pointers, each starting at either end, and move them inwards on each iteration inside of a single loop. Since the distance between the two pointers is getting smaller, the only way to overcome this loss in volume would be for the shorter height to become taller. We can then move the shorter pointer over each time to see if we get a larger volume, until they meet in the middle.
 ##### Code
-```node
+```javascript
 var maxArea = function(height) {
     let i = 0
     let j = height.length - 1
@@ -181,7 +181,7 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 ##### Description
 We can check each digit starting with the least significant, and convert it to its corresponding Roman numeral(s). We can also use a 2D array to keep track of which Roman numerals are used for each power of 10.
 ##### Code
-```node
+```javascript
 var intToRoman = function(num) {
     let sum = []
     let i = 0
@@ -229,7 +229,7 @@ Output: [[-1,-1,2],[-1,0,1]]
 ##### Description
 Three sum can be thought of as essentially two sum with one number held constant. We can use an outer loop to iterate through all numbers to hold one constant, and perform the two sum algorithm on the remaining. We should also sort the array initially to be able to avoid duplicates when identifying triplet sets. Since the array will be sorted, we can use the two-pointer method from Two Sum II.
 ##### Code
-```node
+```javascript
 var threeSum = function(nums) {
     const result = []
     
@@ -275,7 +275,7 @@ You are given the head of a singly linked-list. The list can be represented as:
 `L0 → L1 → … → Ln - 1 → Ln`
 Reorder the list to be on the following form:
 `L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …`
-You may not modify the values in the list's nodes. Only nodes themselves may be changed.
+You may not modify the values in the list's javascripts. Only javascripts themselves may be changed.
 ### Example
 ```
 Input: head = [1,2,3,4]
@@ -289,9 +289,9 @@ We can break this down into 3 necessary steps:
     For this we can use two pointers as we traverse the list, one "slow" pointer and one "fast" pointer incrementing at double the rate.
 2. Reverse the second-half list
 3. Merge the two lists
-    We point the current node of the first list to the current node of the second list, then the current node of the second list to the next node of the first list.
+    We point the current javascript of the first list to the current javascript of the second list, then the current javascript of the second list to the next javascript of the first list.
 ##### Code
-```node
+```javascript
 var reorderList = function(head) {
     // split into two lists, create pointers for second list
     let start = head
@@ -346,7 +346,7 @@ Explanation: Factors list is [1, 2, 3, 4, 6, 12], the 3rd factor is 3.
 ##### Description
 We can find all factors of `n` by iterating from 1 to `sqrt(n)`. We can create one array to store all of these initial factors, and a separate array to store their complements. Then we can reverse the complements array, concatenate the two, and find our answer.
 ##### Code
-```node
+```javascript
 var kthFactor = function(n, k) {
     const factors = []
     const factors2 = []
@@ -392,7 +392,7 @@ Output: 3
 ##### Description
 Iterate through the 2D array. At each `"1"` encounter, increment the island counter and run depth-first search to mark the whole island as seen (`"0"`).
 ##### Code
-```node
+```javascript
 var numIslands = function(grid) {
     const dfs = (row, col) => {
         if (
@@ -447,7 +447,7 @@ Explanation: The answer is not 11, because the island must be connected 4-direct
 ##### Description
 The previous number of islands algorithm can be slightly modified to utilize two static counters for overall max size and temporary size.
 ##### Code
-```node
+```javascript
 var maxAreaOfIsland = function(grid) {
     let max_size = 0
     let max_tmp = 0
@@ -492,12 +492,12 @@ var maxAreaOfIsland = function(grid) {
 
 # Linked List Cycle II
 ### Problem
-Given a linked list, return the node where the cycle begins. If there is no cycle, return `null`.
+Given a linked list, return the javascript where the cycle begins. If there is no cycle, return `null`.
 ### Example
 ```
 Input: head = [3,2,0,-4], pos = 1
-Output: tail connects to node index 1
-Explanation: There is a cycle in the linked list, where tail connects to the second node.
+Output: tail connects to javascript index 1
+Explanation: There is a cycle in the linked list, where tail connects to the second javascript.
 ```
 ### Solution
 **Data structure**: none
@@ -506,7 +506,7 @@ We split the solution into two steps: 1) find the initial intersect between a fa
 
 > Alternatively, use Python and create a hashmap of pointers. When a pointer is reached that is already in the map, this is the connection point.
 ##### Code
-```node
+```javascript
 var detectCycle = function(head) {
     if (!head || !head.next) return null
     let slow = head
@@ -525,6 +525,21 @@ var detectCycle = function(head) {
     }
     return null
 }
+```
+##### Easy Python Solution
+```python
+def detectCycle(self, head):
+        """
+        :type head: Listjavascript
+        :rtype: Listjavascript
+        """
+        seen = set()
+        while head:
+            if head in seen:
+                return head
+            seen.add(head)
+            head = head.next
+        return None
 ```
 ##### Time complexity: O(n)
 Not even going to bother trying to write the proof for this one tbh.

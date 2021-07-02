@@ -1,7 +1,7 @@
 # HashMap
 **Lookup**: O(1)
 **Insertion**: O(1)
-```node
+```javascript
 const map = {}
 map['key'] = 1
 if ('key' in map) // do something
@@ -14,7 +14,7 @@ if ('key' in map) // do something
 # Set
 **Lookup**: O(1)
 **Insertion**: O(1)
-```node
+```javascript
 const set = new Set()
 set.add(1)
 set.add(2)

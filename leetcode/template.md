@@ -10,7 +10,7 @@
 ##### Description
 
 ##### Code
-```node
+```javascript
 
 ```
 ##### Time complexity: 
