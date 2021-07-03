@@ -1,6 +1,6 @@
 # Add Two Numbers
 ### Problem
-Given two non-empty linked lists representing two non-negative integers, with each digit stored in a javascript in *reverse order*, compute the sum of the two numbers as a linked list in reverse order.
+Given two non-empty linked lists representing two non-negative integers, with each digit stored in a node in *reverse order*, compute the sum of the two numbers as a linked list in reverse order.
 ### Example
 ```
 l1 = [2, 4, 3]
@@ -11,26 +11,26 @@ because 342 + 465 = 807
 ### Solution
 **Data structure**: linked list
 ##### Description
-Iterate over both linked lists simultaneously to compute the sum step by step. Maintain a `carry` value, and keep track of current `l1` and `l2` javascripts as well as the current sum javascript.
+Iterate over both linked lists simultaneously to compute the sum step by step. Maintain a `carry` value, and keep track of current `l1` and `l2` nodes as well as the current sum node.
 ##### Code
 ```javascript
 var addTwoNumbers = function(l1, l2) {
-    const head = new Listjavascript(0)
+    const head = new ListNode(0)
     let carry = 0
     
-    let javascript1 = l1
-    let javascript2 = l2
+    let node1 = l1
+    let node2 = l2
     
     let curr = head
     
-    while (javascript1 || javascript2 || carry !== 0) {
-        const tmpSum = (javascript1 ? javascript1.val : 0) + (javascript2 ? javascript2.val : 0) + carry
+    while (node1 || node2 || carry !== 0) {
+        const tmpSum = (node1 ? node1.val : 0) + (node2 ? node2.val : 0) + carry
         const sum = tmpSum % 10
-        curr.next = new Listjavascript(sum)
+        curr.next = new ListNode(sum)
         carry = tmpSum >= 10 ? 1 : 0
         curr = curr.next
-        javascript1 = javascript1 ? javascript1.next : undefined
-        javascript2 = javascript2 ? javascript2.next : undefined
+        node1 = node1 ? node1.next : undefined
+        node2 = node2 ? node2.next : undefined
     }
     
     return head.next
@@ -275,7 +275,7 @@ You are given the head of a singly linked-list. The list can be represented as:
 `L0 → L1 → … → Ln - 1 → Ln`
 Reorder the list to be on the following form:
 `L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …`
-You may not modify the values in the list's javascripts. Only javascripts themselves may be changed.
+You may not modify the values in the list's nodes. Only nodes themselves may be changed.
 ### Example
 ```
 Input: head = [1,2,3,4]
@@ -289,7 +289,7 @@ We can break this down into 3 necessary steps:
     For this we can use two pointers as we traverse the list, one "slow" pointer and one "fast" pointer incrementing at double the rate.
 2. Reverse the second-half list
 3. Merge the two lists
-    We point the current javascript of the first list to the current javascript of the second list, then the current javascript of the second list to the next javascript of the first list.
+    We point the current node of the first list to the current node of the second list, then the current node of the second list to the next node of the first list.
 ##### Code
 ```javascript
 var reorderList = function(head) {
@@ -487,17 +487,16 @@ var maxAreaOfIsland = function(grid) {
 
 ##### Space complexity: O(1)
 
-
 ---
 
 # Linked List Cycle II
 ### Problem
-Given a linked list, return the javascript where the cycle begins. If there is no cycle, return `null`.
+Given a linked list, return the node where the cycle begins. If there is no cycle, return `null`.
 ### Example
 ```
 Input: head = [3,2,0,-4], pos = 1
-Output: tail connects to javascript index 1
-Explanation: There is a cycle in the linked list, where tail connects to the second javascript.
+Output: tail connects to node index 1
+Explanation: There is a cycle in the linked list, where tail connects to the second node.
 ```
 ### Solution
 **Data structure**: none
@@ -530,8 +529,8 @@ var detectCycle = function(head) {
 ```python
 def detectCycle(self, head):
         """
-        :type head: Listjavascript
-        :rtype: Listjavascript
+        :type head: Listnode
+        :rtype: Listnode
         """
         seen = set()
         while head:

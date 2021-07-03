@@ -238,7 +238,7 @@ Output: [5,4,3,2,1]
 ### Solution
 **Data structure**: none (in-place)
 ##### Description
-Iterate through the linked list, pointing `next` to the previous javascript and storing the current and previous javascripts.
+Iterate through the linked list, pointing `next` to the previous node and storing the current and previous nodes.
 ##### Code
 ```javascript
 var reverseList = function(head) {
@@ -286,7 +286,7 @@ var invertTree = function(root) {
 }
 ```
 ##### Time complexity: O(n)
-We have to at least visit each javascript to invert it.
+We have to at least visit each node to invert it.
 ##### Space complexity: O(1)
 
 ---
@@ -379,7 +379,7 @@ var climbStairs = function(n) {
 ---
 # Merge Two Sorted Lists
 ### Problem
-Merge two sorted linked lists and return it as a sorted list. The list should be made by splicing together the javascripts of the first two lists.
+Merge two sorted linked lists and return it as a sorted list. The list should be made by splicing together the nodes of the first two lists.
 ### Example
 ```
 Input: l1 = [1,2,4], l2 = [1,3,4]
@@ -388,11 +388,11 @@ Output: [1,1,2,3,4,4]
 ### Solution
 **Data structure**: linked list
 ##### Description
-Check through both lists simultaneously, adding the lesser javascript to the new linked list each time.
+Check through both lists simultaneously, adding the lesser node to the new linked list each time.
 ##### Code
 ```javascript
 var mergeTwoLists = function(l1, l2) {
-    const prehead = new Listjavascript()
+    const prehead = new ListNode()
     let current = prehead
     while (l1 && l2) {
         if (l1.val <= l2.val) {
@@ -420,14 +420,14 @@ In JavaScript this is O(n), but in languages with pointers it would be constant 
 ### Problem
 Given `head`, the head of a linked list, determine if the linked list has a cycle in it.
 
-There is a cycle in a linked list if there is some javascript in the list that can be reached again by continuously following the `next` pointer. Internally, `pos` is used to denote the index of the javascript that tail's `next` pointer is connected to. Note that `pos` is not passed as a parameter.
+There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the `next` pointer. Internally, `pos` is used to denote the index of the node that tail's `next` pointer is connected to. Note that `pos` is not passed as a parameter.
 
 Return `true` if there is a cycle in the linked list. Otherwise, return `false`.
 ### Example
 ```
 Input: head = [3,2,0,-4], pos = 1
 Output: true
-Explanation: There is a cycle in the linked list, where the tail connects to the 1st javascript (0-indexed).
+Explanation: There is a cycle in the linked list, where the tail connects to the 1st node (0-indexed).
 ```
 ### Solution
 **Data structure**: none
