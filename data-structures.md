@@ -11,7 +11,7 @@ if ('key' in map) // do something
 
 ---
 
-# Set
+# Set/Hashset
 **Lookup**: O(1)
 **Insertion**: O(1)
 ```javascript
