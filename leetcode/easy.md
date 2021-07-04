@@ -453,5 +453,41 @@ If there is no loop, one pass through the list gives O(n). If there is a loop, w
 
 ---
 
+# Convert Sorted Array to Binary Search Tree
+### Problem
+Given an integer array nums where the elements are sorted in ascending order, convert it to a height-balanced binary search tree.
+
+A height-balanced binary tree is a binary tree in which the depth of the two subtrees of every node never differs by more than one.
+### Example
+```
+Input: nums = [-10,-3,0,5,9]
+Output: [0,-3,9,-10,null,5]
+```
+### Solution
+**Data structure**: binary search tree
+##### Description
+We can recursively create the binary tree from a sorted array by selecting the middle node (left middle node in this case, but it could also be the right) to be the root of a subtree, and recursively calling a function to fill out the left and right children.
+##### Code
+```javascript
+var sortedArrayToBST = function(nums) {
+    const createTree = (left, right) => {
+        if (left > right) return null
+        const middle = Math.floor((left + right) / 2)
+        const root = new TreeNode(nums[middle])
+        root.left = createTree(left, middle - 1)
+        root.right = createTree(middle + 1, right)
+        return root
+    }
+    
+    return createTree(0, nums.length - 1)
+}
+```
+##### Time complexity: O(n)
+
+##### Space complexity: O(n)
+
+
+---
+
 ---
 `cmd-shift-v` to preview
