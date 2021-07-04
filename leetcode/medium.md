@@ -586,4 +586,46 @@ We will always have to iterate through the entire array.
 
 ---
 
+# Longest Consecutive Sequence
+### Problem
+Given an unsorted array of integers `nums`, return the length of the longest consecutive elements sequence.
+
+You must write an algorithm that runs in O(n) time.
+### Example
+```
+Input: nums = [100,4,200,1,3,2]
+Output: 4
+Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.
+```
+### Solution
+**Data structure**: hashset
+##### Description
+We can create a set of all integers in `nums` for O(1) lookup. Then, we can iterate through `nums`. If `nums[i] - 1` does not exist in the hashset, we know this is the start of a potential sequence. We can increment this value until we no longer find it in the set, and keep a record of the total sequence value seen.
+##### Code
+```javascript
+var longestConsecutive = function(nums) {
+    if (nums.length < 2) return nums.length
+    const set = new Set(nums)
+    let max = 1
+    for (let i = 0; i < nums.length; i += 1) {
+        if (!(set.has(nums[i] - 1))) {
+            let curr = 1
+            let j = nums[i] + 1
+            while (set.has(j)) {
+                curr += 1
+                j += 1
+            }
+            max = max > curr ? max : curr
+        }
+    }
+    return max
+}
+```
+##### Time complexity: O(n)
+
+##### Space complexity: O(1)
+
+
+---
+
 `cmd-shift-v` to preview
