@@ -27,7 +27,66 @@ set.clear()
 
 ---
 
-# Heap
+# Binary Tree
+
+A binary tree is a type of tree where each node has up to two children:
+
+```
+      tree
+      ----
+       1    <-- root
+     /   \
+    2     3  
+   /   
+  4
+```
+
+Possible binary tree attributes:
+
+**Full**: Each node has 0 or 2 children.
+
+```          
+             18
+           /    \   
+         15     20    
+        /  \       
+      40    50   
+    /   \
+   30   50
+```
+
+**Complete**: All levels are completely filled except possibly the last level.
+
+```
+              18
+           /      \  
+         15        30  
+        /  \      /  \
+      40    50  100   40
+```
+
+**Perfect**: All internal nodes have two children and all leaf nodes are at the same level (same as last diagram).
+
+**Balanced**: The height of the tree is O(log n)
+
+### Binary Search Tree
+
+A binary search tree is a binary tree whose nodes have a left child less than the parent and a right child greater than the parent.
+
+#### Balanced
+**Lookup**: O(logn)
+**Insertion**: O(logn)
+
+#### Unbalanced
+**Lookup**: O(n)
+**Insertion**: O(n)
+
+Because of the high unbalanced time complexity, self-balancing trees such as AVL or red-black are more effective than the basic BST.
+
+### Heap
+
+A heap is a type of binary tree often used for quick min/max value retrieval.
+
 **Lookup**: O(logn)
 **Insertion**: O(logn)
 **Heapify**: O(n)
@@ -105,4 +164,36 @@ struct TrieNode
 ```
 
 https://www.geeksforgeeks.org/trie-insert-and-search/
+
+### Compressed Trie
+A compressed trie is obtained from a standard trie by joining chains of single nodes:
+
+```
+                       root
+                    /   \    \
+                   the  an   bye
+                  / |   |  \    
+                ir er  swer y
+```
+
+### Ternary Search Tree
+A TST is a type of trie where the child nodes of a standard trie are ordered as a binary search tree. Each node contains 3 pointers (rather than 26): a left pointer pointing to a lesser node than the current, an equal pointer, and a right pointer pointing to a greater node.
+
+**Pros**: more space-efficient (fewer pointers), more efficient when strings share a common prefix
+
+https://www.geeksforgeeks.org/ternary-search-tree/
+
+# Priority Queue
+
+A priority queue is a type of queue that also has a priority attached to each element/node. Items with higher priority are dequeued before items of lower priority, regardless of insertion order. It has the following operations:
+
+```
+insert()
+getHighestPriority()
+deleteHighestPriority()
+```
+
+Priority queues are generally implemented with heaps, which provide better performance than arrays or linked lists. In a binary heap, `getHighestPriority()` can be implemented in O(1) time, `insert()` can be implemented in O(Logn) time and `deleteHighestPriority()` can also be implemented in O(log n) time.
+
+https://www.geeksforgeeks.org/heap-and-priority-queue-using-heapq-module-in-python/
 
