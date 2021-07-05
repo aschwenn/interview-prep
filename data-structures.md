@@ -65,3 +65,44 @@ print (heapq.heappop(li))
 > Heap is not available in JavaScript standard libraries
 
 > A max heap can be created by negating all of the values in the array before running `heapify`, and negating any popped values
+
+---
+
+# Trie (prefix tree)
+
+**Lookup**: O(M)
+**Insertion**: O(M)
+
+> (where `M` is the maximum key length)
+
+Tries are used to quick retrieval of keys. A trie is a type of tree that stores characters and can be used to search for strings or keys by searching down the tree character by character.
+
+```
+                       root
+                    /   \    \
+                    t   a     b
+                    |   |     |
+                    h   n     y
+                    |   |  \  |
+                    e   s  y  e
+                 /  |   |
+                 i  r   w
+                 |  |   |
+                 r  e   e
+                        |
+                        r
+```
+
+```c
+// Trie node 
+struct TrieNode 
+{ 
+     struct TrieNode *children[ALPHABET_SIZE];
+     // isEndOfWord is true if the node 
+     // represents end of a word 
+     bool isEndOfWord; 
+}; 
+```
+
+https://www.geeksforgeeks.org/trie-insert-and-search/
+
