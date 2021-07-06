@@ -67,7 +67,17 @@ Possible binary tree attributes:
 
 **Perfect**: All internal nodes have two children and all leaf nodes are at the same level (same as last diagram).
 
-**Balanced**: The height of the tree is O(log n)
+**Balanced**: The height of the tree is O(log n).
+
+**Foldable**: The left and right subtrees are mirror images of each other.
+
+```
+       10
+     /    \
+    7      15
+     \    /
+      9  11
+```
 
 ### Binary Search Tree
 
@@ -170,7 +180,7 @@ A compressed trie is obtained from a standard trie by joining chains of single n
 
 ```
                        root
-                    /   \    \
+                    /   |    \
                    the  an   bye
                   / |   |  \    
                 ir er  swer y

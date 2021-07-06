@@ -15,22 +15,17 @@ Iterate over both linked lists simultaneously to compute the sum step by step. M
 ##### Code
 ```javascript
 var addTwoNumbers = function(l1, l2) {
-    const head = new ListNode(0)
+    const head = new ListNode()
     let carry = 0
-    
-    let node1 = l1
-    let node2 = l2
-    
     let curr = head
     
-    while (node1 || node2 || carry !== 0) {
-        const tmpSum = (node1 ? node1.val : 0) + (node2 ? node2.val : 0) + carry
-        const sum = tmpSum % 10
-        curr.next = new ListNode(sum)
+    while (l1 || l2 || carry !== 0) {
+        const tmpSum = (l1 ? l1.val : 0) + (l2 ? l2.val : 0) + carry
+        curr.next = new ListNode(tmpSum % 10)
         carry = tmpSum >= 10 ? 1 : 0
         curr = curr.next
-        node1 = node1 ? node1.next : undefined
-        node2 = node2 ? node2.next : undefined
+        l1 = l1 ? l1.next : null
+        l2 = l2 ? l2.next : null
     }
     
     return head.next
