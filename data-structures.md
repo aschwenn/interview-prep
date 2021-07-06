@@ -67,7 +67,7 @@ Possible binary tree attributes:
 
 **Perfect**: All internal nodes have two children and all leaf nodes are at the same level (same as last diagram).
 
-**Balanced**: The height of the tree is O(log n).
+**Balanced**: The height of the tree is log (n + 1) - 1.
 
 **Foldable**: The left and right subtrees are mirror images of each other.
 
