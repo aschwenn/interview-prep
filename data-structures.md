@@ -193,6 +193,8 @@ A TST is a type of trie where the child nodes of a standard trie are ordered as 
 
 https://www.geeksforgeeks.org/ternary-search-tree/
 
+---
+
 # Priority Queue
 
 A priority queue is a type of queue that also has a priority attached to each element/node. Items with higher priority are dequeued before items of lower priority, regardless of insertion order. It has the following operations:
