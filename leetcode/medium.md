@@ -623,4 +623,42 @@ var longestConsecutive = function(nums) {
 
 ---
 
+# Longest Increasing Subsequence
+### Problem
+Given an integer array nums, return the length of the longest strictly increasing subsequence.
+
+A subsequence is a sequence that can be derived from an array by deleting some or no elements without changing the order of the remaining elements. For example, [3,6,2,7] is a subsequence of the array [0,3,1,6,2,2,7].
+
+### Example
+```
+Input: nums = [10,9,2,5,3,7,101,18]
+Output: 4
+Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.
+```
+### Solution
+**Data structure**: array (dynamic programming)
+##### Description
+At each index, the longest increasing subsequence can be calculated based on the numbers leading up to it. Because of this, we can use dynamic programming to store results from earlier computations. We can initialize a list of length `n` filled with `1`s, since each index at least has a subsequence containing itself. Then, we can calculate each step by looking at previous values that are lower than the current value and seeing if adding the current value to the previous subsequence gives a longer overall subsequence.
+##### Code
+```javascript
+var lengthOfLIS = function(nums) {
+    if (nums.length === 1) return 1
+    
+    const dp = new Array(nums.length).fill(1)
+    for (let i = 1; i < nums.length; i += 1) {
+        for (let j = 0; j < i; j += 1) {
+            if (nums[i] > nums[j]) dp[i] = Math.max(dp[i], dp[j] + 1)
+        }
+    }
+    
+    return Math.max(...dp)
+}
+```
+##### Time complexity: O(n^2)
+
+##### Space complexity: O(n)
+
+
+---
+
 `cmd-shift-v` to preview
