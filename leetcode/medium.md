@@ -661,5 +661,41 @@ var lengthOfLIS = function(nums) {
 
 ---
 
+# Lowest Common Ancestor of a Binary Tree
+### Problem
+Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.
+### Example
+```
+Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
+Output: 3
+Explanation: The LCA of nodes 5 and 1 is 3.
+```
+### Solution
+**Data structure**: none
+##### Description
+We can traverse the tree using DFS, looking to identify both the `p` node and `q` node. At each node, we recurse on its two children. If they are found, the result of this recursive call is `true`. When we've found both, we can set our result variable to the node which contains both as children. Since the recursive calls are resolved bottom-up, the result variable will be replaced with the lowest common ancestor.
+##### Code
+```javascript
+var lowestCommonAncestor = function(root, p, q) {
+    let result = null
+    const recurse = (node) => {
+        if (!node) return false
+        const left = recurse(node.left)
+        const right = recurse(node.right)
+        const mid = node.val === q.val || node.val === p.val
+        if (left + right + mid >= 2) result = node
+        return left || right || mid
+    }
+    recurse(root)
+    return result
+}
+```
+##### Time complexity: O(n)
+
+##### Space complexity: O(n)
+Call stack uses O(n) space
+
+---
+
 
 `cmd-shift-v` to preview
