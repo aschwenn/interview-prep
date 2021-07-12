@@ -58,3 +58,19 @@ const fib (n) => {
 }
 ```
 
+---
+
+# Backtracking
+
+Backtracking can be defined as a general algorithmic technique that considers searching every possible combination in order to solve a computational problem. There are three types of problems in backtracking:
+
+1. **Decision Problem** – In this, we search for a feasible solution.
+2. **Optimization Problem** – In this, we search for the best solution.
+3. **Enumeration Problem** – In this, we find all feasible solutions.
+
+> Backtracking algorithms are generally exponential in time and spatial complexities.
+
+Backtracking recursively checks through all possibilities to search for the answer(s), terminating a decision tree if it's impossible to arrive at a valid answer for that path.
+
+
+
