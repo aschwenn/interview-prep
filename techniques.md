@@ -72,5 +72,5 @@ Backtracking can be defined as a general algorithmic technique that considers se
 
 Backtracking recursively checks through all possibilities to search for the answer(s), terminating a decision tree if it's impossible to arrive at a valid answer for that path.
 
-
+Example problem: [The Knight's Tour](https://www.geeksforgeeks.org/the-knights-tour-problem-backtracking-1/)
 
