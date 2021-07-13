@@ -697,5 +697,58 @@ Call stack uses O(n) space
 
 ---
 
+# Search in Rotated Sorted Array
+### Problem
+There is an integer array `nums` sorted in ascending order (with distinct values).
+
+Prior to being passed to your function, `nums` is rotated at an unknown pivot index `k (0 <= k < nums.length)` such that the resulting array is `[nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]]` (0-indexed). For example, `[0,1,2,4,5,6,7]` might be rotated at pivot index `3` and become `[4,5,6,7,0,1,2]`.
+
+Given the array `nums` after the rotation and an integer `target`, return the index of `target` if it is in `nums`, or `-1` if it is not in `nums`.
+
+You must write an algorithm with O(log n) runtime complexity.
+### Example
+```
+Input: nums = [4,5,6,7,0,1,2], target = 0
+Output: 4
+```
+### Solution
+**Data structure**: none
+##### Description
+We can use a form of binary search to find the pivot index which (if it's not `0`) will be found when `nums[mid] > nums[mid + 1]`. Once we've found the pivot index, we can use a binary search on the section of `nums` likely to contain the `target` (first section if `nums[0] < target`, second section otherwise, unless `nums[pivot] === target`).
+##### Code
+```javascript
+var search = function(nums, target) {
+    if (nums.length === 1) return nums[0] === target ? 0 : -1
+    const find_pivot = (left, right) => {
+        if (nums[left] < nums[right]) return 0
+        
+        while (left <= right) {
+            let mid = Math.trunc((left + right) / 2)
+            if (nums[mid] > nums[mid + 1]) return mid + 1
+            if (nums[mid] < nums[left]) right = mid - 1
+            else left = mid + 1
+        }
+    }
+    const pivot = find_pivot(0, nums.length - 1)
+    const binary_search = (left, right) => {
+        while (left <= right) {
+            let mid = Math.trunc((left + right) / 2)
+            if (nums[mid] === target) return mid
+            if (nums[mid] > target) right = mid - 1
+            else left = mid + 1
+        }
+        return -1
+    }
+    if (nums[pivot] === target) return pivot
+    if (pivot === 0) return binary_search(0, nums.length - 1)
+    return nums[0] <= target ? binary_search(0, pivot) : binary_search(pivot, nums.length - 1)
+}
+```
+##### Time complexity: O(logn)
+Finding the pivot requires O(logn), and finding the `target` afterwards requires O(logn) again.
+##### Space complexity: O(1)
+These helper functions can be written recursively, but writing them iteratively saves space on the call stack.
+
+---
 
 `cmd-shift-v` to preview
