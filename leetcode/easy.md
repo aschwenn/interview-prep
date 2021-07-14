@@ -489,5 +489,40 @@ var sortedArrayToBST = function(nums) {
 
 ---
 
+# Count Primes
+### Problem
+Count the number of prime numbers less than a non-negative number, `n`.
+### Example
+```
+Input: n = 10
+Output: 4
+Explanation: There are 4 prime numbers less than 10, they are 2, 3, 5, 7.
+```
+### Solution
+**Data structure**: array
+##### Description
+The Sieve of Eratosthenes can be used to "remove" all integers from 2 to `n` that aren't prime, by iterating from 2 to `sqrt(n)` and marking all multiples of each as being compound numbers. To save time, we can actually mark all multiples from `p^2` to `sqrt(n)`, where `p` is the iterated integer.
+##### Code
+```javascript
+var countPrimes = function(n) {
+    if (n <= 2) return 0
+    
+    const arr = (new Array(n)).fill(true)
+    const sqrt = Math.sqrt(n)
+    for (let p = 2; p <= sqrt; p += 1) {
+        if (!arr[p]) continue
+        for (let j = p * p; j < n; j += p) arr[j] = false
+    }
+    
+    return arr.slice(2).filter((v) => v).length
+}
+```
+##### Time complexity: O(sqrt(n) loglogn)
+Checking integers from `2` to `n` uses O(sqrt(n)) time, and "crossing off" multiples for each of these uses O(loglogn) time ([proof](http://www.cs.umd.edu/~gasarch/BLOGPAPERS/sump.pdf)).
+##### Space complexity: O(n)
+
+
+---
+
 
 `cmd-shift-v` to preview
