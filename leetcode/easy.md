@@ -110,7 +110,7 @@ var isPalindrome = function(x) {
 ```
 ##### Time complexity: O(logn)
 The while loop takes O(logn), and the for loop afterwards takes O(1/2 logn).
-##### Space complexity: O(logn)
+##### Space complexity: O(n)
 The array must hold each digit.
 
 ---
