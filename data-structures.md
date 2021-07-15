@@ -205,7 +205,7 @@ getHighestPriority()
 deleteHighestPriority()
 ```
 
-Priority queues are generally implemented with heaps, which provide better performance than arrays or linked lists. In a binary heap, `getHighestPriority()` can be implemented in O(1) time, `insert()` can be implemented in O(Logn) time and `deleteHighestPriority()` can also be implemented in O(log n) time.
+Priority queues are generally implemented with heaps, which provide better performance than arrays or linked lists. In a binary heap, `getHighestPriority()` can be implemented in O(1) time, `insert()` can be implemented in O(logn) time and `deleteHighestPriority()` can also be implemented in O(logn) time.
 
 https://www.geeksforgeeks.org/heap-and-priority-queue-using-heapq-module-in-python/
 
