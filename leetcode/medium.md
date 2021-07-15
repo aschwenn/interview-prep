@@ -344,18 +344,18 @@ We can find all factors of `n` by iterating from 1 to `sqrt(n)`. We can create o
 ```javascript
 var kthFactor = function(n, k) {
     const factors = []
-    const factors2 = []
+    const complements = []
     const sqrt = Math.trunc(Math.sqrt(n))
     for (let i = 1; i <= sqrt; i += 1) {
         if (n % i === 0) {
             factors.push(i)
             // skip duplicate in the case of a square
-            if (n / i !== i) factors2.push(n / i)
+            if (n / i !== i) complements.push(n / i)
         }
     }
     
-    factors2.reverse()
-    factors.push(...factors2)
+    complements.reverse()
+    factors.push(...complements)
     
     return k > factors.length ? -1 : factors[k - 1]
 }
